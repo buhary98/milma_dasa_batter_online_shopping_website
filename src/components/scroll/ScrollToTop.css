@@ -1,0 +1,27 @@
+.scroll-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.scroll-button:hover {
+    background-color: rgba(255, 255, 255);
+}
+
+.arrow-icon {
+    color: black;
+    transition: color 0.2s ease;
+}

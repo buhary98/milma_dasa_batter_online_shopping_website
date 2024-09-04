@@ -1,0 +1,138 @@
+#review {
+    padding: 35px;
+    background-color: #BFD202;
+}
+
+.review-container {
+    max-width: auto;
+    margin: 0 auto;
+}
+
+.review-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.review-stars {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.review-star {
+    margin-right: 5px;
+}
+
+.review-heading {
+    font-family: 'Montserrat', sans-serif;
+    color: #0A5247;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.review-text {
+    font-family: 'Montserrat', sans-serif;
+    color: #0A5247;
+    font-size: 20px;
+    text-align: justify;
+    margin-bottom: 25px;
+    height: 150px;
+    overflow-y: auto;
+}
+
+/* Style the scrollbar */
+.review-text::-webkit-scrollbar {
+    width: 4px;
+}
+
+.review-text::-webkit-scrollbar-track {
+    background: #F8F4ED;
+    border-radius: 10px;
+}
+
+.review-text::-webkit-scrollbar-thumb {
+    background: #BFD202;
+    border-radius: 10px;
+}
+
+.review-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 1 calc(100% - 40px);
+    box-sizing: border-box;
+    background-color: #F8F4ED;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.review-person {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.reviewer-pic {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.reviewer-name {
+    font-family: 'Montserrat', sans-serif;
+    color: #0A5247;
+    font-size: 20px;
+}
+
+/* Small devices (phones, 480px and up) */
+@media (min-width: 480px) {
+    .review-heading {
+        font-size: 30px;
+        line-height: 36px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #review {
+        padding: 55px;
+    }
+
+    .review-item {
+        flex: 1 1 calc(50% - 40px);
+    }
+
+    .review-heading {
+        font-size: 36px;
+        line-height: 42px;
+    }
+
+    .review-text {
+        height: 180px;
+    }
+}
+
+/* Large devices (desktops, 1289px and up) */
+@media (min-width: 1289px) {
+    #review {
+        padding: 75px;
+    }
+
+    .review-heading {
+        font-size: 48px;
+        line-height: 53px;
+    }
+
+    .review-item {
+        flex: 1 1 calc(25% - 40px);
+    }
+
+    .review-text {
+        height: 280px;
+    }
+}
