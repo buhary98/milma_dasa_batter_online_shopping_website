@@ -1,0 +1,90 @@
+#process {
+    text-align: center;
+    padding: 35px;
+    background-color: #F8F4ED;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.process-heading {
+    font-family: 'Montserrat', sans-serif;
+    color: #0A5247;
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+.process-name {
+    font-family: 'Montserrat', sans-serif;
+    color: #0A5247;
+    font-size: 20px;
+}
+
+.image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 calc(100% - 40px);
+    box-sizing: border-box;
+}
+
+.image-item {
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+    height: 300px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+}
+
+.number-icon {
+    width: 150px;
+    height: auto;
+    color: #0A5247;
+}
+
+/* Small devices (phones, 480px and up) */
+@media (min-width: 480px) {
+    
+    .process-heading {
+        font-size: 30px;
+        line-height: 36px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #process {
+        padding: 55px;
+    }
+
+    .image-item {
+        flex: 1 1 calc(50% - 40px);
+    }
+    .process-heading {
+        font-size: 36px;
+        line-height: 42px;
+    }
+}
+
+/* Media queries for large devices (e.g., desktops) */
+@media (min-width: 1024px) {
+    #process {
+        padding: 75px;
+    }
+
+    .process-heading {
+        font-size: 48px;
+        line-height: 53px;
+    }
+
+    .image-item {
+        flex: 1 1 calc(33.33% - 40px);
+    }
+}
