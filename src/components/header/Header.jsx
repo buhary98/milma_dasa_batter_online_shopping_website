@@ -10,12 +10,6 @@ const Header = () => {
   const menuRef = useRef(null);
   const dropDownRef = useRef(null);
 
-  /* const scrollToSection = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false);
-    setDropDownOpen(false);
-  }; */
-
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     const headerOffset = document.querySelector(".navbar").offsetHeight;
@@ -27,18 +21,18 @@ const Header = () => {
       behavior: "smooth",
     });
 
+    // Close menu and dropdown after scrolling
     setMenuOpen(false);
     setDropDownOpen(false);
   };
 
   const toggleDropDown = () => {
     setDropDownOpen((prevDropDownOpen) => !prevDropDownOpen);
-    setMenuOpen(false);
   };
 
   const toggleMenu = () => {
     setMenuOpen((prevMenuOpen) => !prevMenuOpen);
-    setDropDownOpen(false);
+    setDropDownOpen(false); // Ensure dropdown is closed when toggling menu
   };
 
   const handleClickOutside = (event) => {
@@ -72,9 +66,10 @@ const Header = () => {
         <img src={Logo} alt="Milma" />
       </div>
       <div
-        className="navbar-toggler"
+        className={classnames("navbar-toggler", { open: menuOpen })}
         onClick={toggleMenu}
         role="button"
+        aria-expanded={menuOpen}
         tabIndex="0"
         onKeyPress={(e) => e.key === "Enter" && toggleMenu()}
       >

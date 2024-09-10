@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import "./ScrollToTop.css";
 
-const ScrollToTop = () => {
+const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};
+
+const ScrollToTop = React.memo(() => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleScroll = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
+  const handleScroll = useCallback(
+    debounce(() => {
+      const scrolled = document.documentElement.scrollTop;
+      setIsVisible(scrolled > 300);
+    }, 100), // Adjust the debounce delay to balance performance and responsiveness
+    []
+  );
 
-  const scrollToSection = () => {
-    /* document.getElementById("head").scrollIntoView({ behavior: "smooth" }); */
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -24,25 +32,25 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
-    <div>
+    <>
       {isVisible && (
         <button
-          onClick={scrollToSection}
+          onClick={scrollToTop}
           className="scroll-button"
           aria-label="Scroll to top"
+          title="Scroll to top"
         >
           <FaArrowUp className="arrow-icon" />
         </button>
       )}
-    </div>
+    </>
   );
-};
+});
 
 export default ScrollToTop;

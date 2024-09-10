@@ -2,17 +2,25 @@ import React from "react";
 import useImageOnIntersection from "../hooks/useImageOnIntersection";
 
 import BannerImage from "../../assets/images/dosa-banner.webp";
+import MilmaImage from "../../assets/images/milma.webp";
 import "./HeadBanner.css";
 
 const HeadBanner = () => {
-  const { isImageLoaded, handleImageLoad } = useImageOnIntersection();
+  const { isImageLoaded, sectionRef, handleImageLoad } =
+    useImageOnIntersection();
 
   return (
-    <section id="head">
+    <section id="head" ref={sectionRef}>
       <div className="spacer"></div>
       <div className="banner-row">
         <div className="banner-col-left">
-          <h1 className="banner-heading">Milma</h1>
+          <img
+            src={MilmaImage}
+            alt="Milma"
+            className={`milma-image ${isImageLoaded ? "loaded" : "blur"}`}
+            loading="lazy"
+            onLoad={handleImageLoad}
+          />
           <p className="banner-content">
             " Crispy mornings, fluffy evenings,
             <br />
@@ -27,7 +35,7 @@ const HeadBanner = () => {
           <img
             src={BannerImage}
             alt="Sample Image"
-            className={`banner-image ${isImageLoaded ? "loaded" : ""}`}
+            className={`banner-image ${isImageLoaded ? "loaded" : "blur"}`}
             loading="lazy"
             onLoad={handleImageLoad}
           />

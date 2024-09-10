@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
-
 import { TbPhone } from "react-icons/tb";
 import { IoLocationOutline } from "react-icons/io5";
 import { LuMail } from "react-icons/lu";
-
 import SocialMedia from "../social_media/SocialMedia";
-
 import "./Contact.css";
 
 const Contact = () => {
-  const [isMapLoaded, setIsMapLoaded] = useState(true);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,8 +17,9 @@ const Contact = () => {
   const [formSuccess, setFormSuccess] = useState(null);
 
   useEffect(() => {
+    // Set map loaded state to true after 4 seconds
     const timer = setTimeout(() => {
-      setIsMapLoaded(false);
+      setIsMapLoaded(true);
     }, 4000);
     return () => clearTimeout(timer);
   }, []);
@@ -49,7 +47,6 @@ const Contact = () => {
         (result) => {
           console.log(result.text);
           setFormSuccess("Mission Accomplished!");
-
           setFormData({
             name: "",
             email: "",
@@ -63,7 +60,6 @@ const Contact = () => {
         (error) => {
           console.log(error.text);
           setFormError("Oops! Give it Another Shot.");
-
           setTimeout(() => {
             setFormError(null);
           }, 4000);
@@ -79,7 +75,7 @@ const Contact = () => {
     <section id="contact">
       <h2 className="contact-heading">Get in touch</h2>
       <div className="map-container-md">
-        {!isMapLoaded ? (
+        {isMapLoaded ? (
           <div className="map-container">
             <iframe
               className="map"
@@ -96,7 +92,7 @@ const Contact = () => {
       </div>
       <div className="contact-row">
         <div className="contact-col-left">
-          {!isMapLoaded ? (
+          {isMapLoaded ? (
             <div className="map-container">
               <iframe
                 className="map"
@@ -163,14 +159,8 @@ const Contact = () => {
               aria-label="Message"
               autoComplete="new-message"
             ></textarea>
-            {formError && (
-              <p style={{ color: "red", textAlign: "center" }}>{formError}</p>
-            )}
-            {formSuccess && (
-              <p style={{ color: "green", textAlign: "center" }}>
-                {formSuccess}
-              </p>
-            )}
+            {formError && <p className="form-error">{formError}</p>}
+            {formSuccess && <p className="form-success">{formSuccess}</p>}
             <button type="submit" aria-label="Submit form">
               Submit
             </button>

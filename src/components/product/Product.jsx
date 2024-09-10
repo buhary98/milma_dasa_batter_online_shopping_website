@@ -1,5 +1,10 @@
 import React, { useMemo } from "react";
+
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 import useImageOnIntersection from "../hooks/useImageOnIntersection";
+
 import ProductImage from "../../assets/images/product.webp";
 import "./Product.css";
 
@@ -33,7 +38,7 @@ const Product = () => {
     []
   );
 
-  const { isImageLoaded, isSectionVisible, sectionRef, handleImageLoad } =
+  const { isImageLoaded, sectionRef, handleImageLoad } =
     useImageOnIntersection();
 
   return (
@@ -48,15 +53,14 @@ const Product = () => {
           <p className="product-content-2">{ProductText2}</p>
         </div>
         <div className="product-col-right">
-          {isSectionVisible && (
-            <img
-              src={ProductImage}
-              alt="Milma dosa batter"
-              className={`product-image ${isImageLoaded ? "loaded" : ""}`}
-              loading="lazy"
-              onLoad={handleImageLoad}
-            />
-          )}
+          <LazyLoadImage
+            className={`product-image ${isImageLoaded ? "loaded" : ""}`}
+            src={ProductImage}
+            alt="Milma dosa batter"
+            effect="blur"
+            onLoad={handleImageLoad}
+            onError={(e) => (e.target.src = "../../assets/images/product.webp")}
+          />
         </div>
       </div>
     </section>

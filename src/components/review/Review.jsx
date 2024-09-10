@@ -6,6 +6,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import Person1 from "../../assets/images/person1.webp";
 import Person2 from "../../assets/images/person2.webp";
 import Person3 from "../../assets/images/person3.webp";
+import Person4 from "../../assets/images/person4.webp";
 
 import "./Review.css";
 
@@ -13,13 +14,17 @@ const ReviewItem = React.memo(({ review }) => {
   const totalStars = 5;
 
   return (
-    <div className="review-item">
-      <div className="review-stars">
+    <div className="review-item" aria-label={`Review by ${review.name}`}>
+      <div
+        className="review-stars"
+        aria-label={`Rating: ${review.rating} out of 5 stars`}
+      >
         {[...Array(totalStars)].map((_, index) => (
           <FaStar
             key={index}
             className="review-star"
             color={index < review.rating ? "#0A5247" : "#BFD202"}
+            aria-hidden="true"
           />
         ))}
       </div>
@@ -30,6 +35,7 @@ const ReviewItem = React.memo(({ review }) => {
           src={review.src}
           alt={review.name}
           effect="blur"
+          onError={(e) => (e.target.src = "../../assets/images/person1.webp")} // Replace with a fallback image
         />
         <p className="reviewer-name">{review.name}</p>
       </div>
@@ -62,7 +68,7 @@ const Review = () => {
     },
     {
       id: 4,
-      src: Person3,
+      src: Person4,
       text: "I’ve tried several dosa batters, but Milma Dosa Batter is by far the best. The batter is fresh, and the dosas are crispy on the outside and soft inside. It’s also versatile – I use it for making uttapams and even some creative fusion dishes. Great product!",
       name: "Ragunath Bala",
       rating: 5,
@@ -70,9 +76,11 @@ const Review = () => {
   ];
 
   return (
-    <section id="review">
+    <section id="review" aria-labelledby="review-heading">
       <div className="review-container">
-        <h1 className="review-heading">Reviews</h1>
+        <h1 id="review-heading" className="review-heading">
+          Reviews
+        </h1>
         <div className="review-box">
           {reviews.map((review) => (
             <ReviewItem key={review.id} review={review} />

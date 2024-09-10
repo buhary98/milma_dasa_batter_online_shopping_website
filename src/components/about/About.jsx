@@ -1,4 +1,8 @@
 import React, { useMemo } from "react";
+
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 import useImageOnIntersection from "../hooks/useImageOnIntersection";
 
 import AboutImage from "../../assets/images/about.webp";
@@ -35,7 +39,7 @@ const About = () => {
     []
   );
 
-  const { isImageLoaded, isSectionVisible, sectionRef, handleImageLoad } =
+  const { isImageLoaded, sectionRef, handleImageLoad } =
     useImageOnIntersection();
 
   return (
@@ -45,15 +49,14 @@ const About = () => {
       </div>
       <div className="about-row">
         <div className="about-col-left">
-          {isSectionVisible && (
-            <img
-              src={AboutImage}
-              alt="Sample Image"
-              className={`about-image ${isImageLoaded ? "loaded" : ""}`}
-              loading="lazy"
-              onLoad={handleImageLoad}
-            />
-          )}
+          <LazyLoadImage
+            className={`about-image ${isImageLoaded ? "loaded" : "blur"}`}
+            src={AboutImage}
+            alt="Sample Image"
+            effect="blur"
+            onLoad={handleImageLoad}
+            onError={(e) => (e.target.src = "../../assets/images/about.webp")}
+          />
         </div>
         <div className="about-col-right">
           <h1 className="about-heading-2">About Us</h1>

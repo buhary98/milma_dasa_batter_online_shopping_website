@@ -1,6 +1,6 @@
 #process {
     text-align: center;
-    padding: 35px;
+    padding: 35px 15px;
     background-color: #F8F4ED;
 }
 
@@ -32,15 +32,10 @@
     align-items: center;
     flex: 1 1 calc(100% - 40px);
     box-sizing: border-box;
-}
-
-.image-item {
     width: 250px;
-    height: auto;
+    height: 250px;
     object-fit: cover;
-    height: 300px;
     border-radius: 50px;
-    margin-bottom: 30px;
 }
 
 .number-icon {
@@ -51,7 +46,6 @@
 
 /* Small devices (phones, 480px and up) */
 @media (min-width: 480px) {
-    
     .process-heading {
         font-size: 30px;
         line-height: 36px;
@@ -67,13 +61,14 @@
     .image-item {
         flex: 1 1 calc(50% - 40px);
     }
+
     .process-heading {
         font-size: 36px;
         line-height: 42px;
     }
 }
 
-/* Media queries for large devices (e.g., desktops) */
+/* Large devices (e.g., desktops) */
 @media (min-width: 1024px) {
     #process {
         padding: 75px;
